@@ -1,0 +1,19 @@
+[Unit]
+Description=OpenReply — bind campaigns to newly published reels (every 5 min)
+Documentation=https://github.com/lunarprojectco/openreply/blob/main/docs/deploy-lunar.md
+
+[Timer]
+# Every 5 minutes, not daily. A campaign created before its reel is published
+# stays inert until this binds it, so a daily run would cost the whole first
+# evening of comments — the most valuable window a post has.
+#
+# Upstream ran this daily only because Vercel's free plan caps a cron at one run
+# per day. That constraint does not exist here, so we use the cadence the job
+# actually wants. scripts/cron.sh made the same call.
+OnCalendar=*:0/5
+Persistent=false
+AccuracySec=30s
+Unit=openreply-cron@attach-next-reel.service
+
+[Install]
+WantedBy=timers.target

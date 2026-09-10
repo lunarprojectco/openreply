@@ -1,0 +1,30 @@
+#!/bin/sh
+# Call one /api/cron route with the shared secret.
+#
+# The secret is passed to curl through --config on stdin, never as an argument,
+# so it does not appear in `ps` output on a shared box.
+#
+# Usage: openreply-cron-call <route>
+# Env:   CRON_BASE_URL (default http://127.0.0.1:3000)
+#        CRON_SECRET, or NEXTAUTH_SECRET — the routes accept either.
+
+set -eu
+
+route="${1:?usage: openreply-cron-call <route>}"
+base="${CRON_BASE_URL:-http://127.0.0.1:3000}"
+secret="${CRON_SECRET:-${NEXTAUTH_SECRET:-}}"
+
+if [ -z "$secret" ]; then
+  echo "openreply-cron-call: neither CRON_SECRET nor NEXTAUTH_SECRET is set;" \
+       "the route would answer 401" >&2
+  exit 78   # EX_CONFIG
+fi
+
+# --fail so a 401/500 is a non-zero exit and systemd records the failure.
+# Without it curl exits 0 and a broken token refresh looks healthy for weeks.
+printf 'header = "Authorization: Bearer %s"\n' "$secret" |
+  exec curl --config - \
+    --fail --silent --show-error \
+    --max-time 180 \
+    --retry 2 --retry-delay 5 \
+    "$base/api/cron/$route"

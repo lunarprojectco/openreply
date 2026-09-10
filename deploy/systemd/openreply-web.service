@@ -1,0 +1,41 @@
+[Unit]
+Description=OpenReply web app (Next.js) — dashboard, OAuth callback, Meta webhook
+Documentation=https://github.com/lunarprojectco/openreply/blob/main/docs/deploy-lunar.md
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=openreply
+Group=openreply
+WorkingDirectory=/opt/openreply
+
+# Secrets live in a root-owned file (chmod 600), never in this unit.
+EnvironmentFile=/etc/openreply/openreply.env
+Environment=NODE_ENV=production
+Environment=PORT=3000
+
+# Bind loopback only; nginx terminates TLS and proxies in.
+Environment=HOSTNAME=127.0.0.1
+
+ExecStart=/usr/bin/npm run start
+
+Restart=always
+RestartSec=5s
+
+# This process receives Meta webhooks. If it is down, comments are missed
+# outright — Meta retries for a limited window and then drops them.
+StartLimitIntervalSec=0
+
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/openreply/.next/cache
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=openreply-web
+
+[Install]
+WantedBy=multi-user.target

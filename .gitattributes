@@ -1,0 +1,7 @@
+# Deploy artifacts are consumed by Linux. A CRLF shebang breaks a shell script
+# with "bad interpreter", and systemd rejects unit files with stray carriage
+# returns — both fail in ways that are hard to read from the error alone.
+deploy/bin/*        text eol=lf
+deploy/systemd/*    text eol=lf
+deploy/nginx/*      text eol=lf
+scripts/*.sh        text eol=lf

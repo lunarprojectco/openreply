@@ -1,14 +1,16 @@
 #!/bin/sh
 # Scheduler for the periodic jobs under /api/cron.
 #
-# On Vercel these run from the "crons" block in vercel.json. Nothing reads that
-# file anywhere else, so a self-hosted instance has no scheduler at all and the
-# jobs simply never run — silently. The one that hurts is refresh-tokens: the
-# Instagram token expires and every automation stops without a single error.
+# Upstream ran these from a "crons" block in vercel.json. That file is gone from
+# this fork — we do not deploy to Vercel — so scheduling is ours to own. Without
+# a scheduler these jobs never run, silently. The one that hurts is
+# refresh-tokens: the Instagram token expires and every automation stops without
+# a single error.
 #
-# Run as its own container from the app image (see the compose file), so the
-# jobs live with the app they belong to and keep working even if every other
-# stack on the host is taken down.
+# Two supported ways to run this:
+#   - systemd timers (how we deploy): see deploy/systemd/ and docs/deploy-lunar.md.
+#     The timers call the routes directly and this polling loop is not used.
+#   - this script, as its own container from the app image, for a container host.
 
 set -u
 

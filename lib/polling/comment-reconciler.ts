@@ -16,9 +16,12 @@
  * handled comments. Each sweep is capped so it can never flood the comment API
  * (which Instagram rate-limits aggressively, error 368).
  *
- * It runs on an interval in the worker process because Vercel's free crons only
- * fire once a day. Matching and sending reuse the worker's processComment, so
- * rate limiting and logging behave exactly as for webhook-delivered comments.
+ * It runs on an interval inside the worker rather than as a scheduled job: it
+ * has to fire every few minutes, and it shares the worker's Redis-backed rate
+ * limiter. Running it out-of-process would need a second limiter and could
+ * exceed Meta's per-account cap. Matching and sending reuse the worker's
+ * processComment, so rate limiting and logging behave exactly as they do for
+ * webhook-delivered comments.
  *
  * Known limitation, handled not fixed: comments removed by Instagram's Hidden
  * Words / spam filter may not be returned by the Graph API at all. Disable that

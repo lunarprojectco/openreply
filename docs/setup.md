@@ -1,5 +1,13 @@
 # Setup
 
+> **Hosting sections are superseded in this fork.** We do not deploy to Vercel. Read
+> [deploy-lunar.md](deploy-lunar.md) for how this instance is actually deployed — nginx plus
+> systemd, with the three crons as systemd timers.
+>
+> Everything below about **the Meta app** — permissions, OAuth redirect URIs, webhook fields,
+> App Review — is still correct and still the part that costs people an afternoon. Read it for
+> that, and substitute your own domain wherever it says a `*.vercel.app` one.
+
 Get OpenReply running end to end: choose your Instagram connection, deploy the web app and worker, configure the databases, and test a campaign. OpenReply is self-hosted with either provider.
 
 If you use a coding assistant, start with [Set it up with an AI assistant](#set-it-up-with-an-ai-assistant). Its first decision is your provider, before any Meta app secrets.

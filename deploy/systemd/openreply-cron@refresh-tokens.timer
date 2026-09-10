@@ -1,0 +1,20 @@
+[Unit]
+Description=OpenReply — refresh Instagram long-lived tokens (daily)
+Documentation=https://github.com/lunarprojectco/openreply/blob/main/docs/deploy-lunar.md
+
+[Timer]
+# Tokens are refreshed 10 days before expiry, so the exact hour is irrelevant —
+# only that it happens every day. This is the job whose silent failure hurts
+# most: the token expires and every automation stops with no error anywhere.
+OnCalendar=*-*-* 05:00:00 UTC
+
+# The box is not guaranteed to be up at 05:00. Without this, a reboot window
+# can skip days in a row and the token quietly ages out.
+Persistent=true
+
+RandomizedDelaySec=300
+AccuracySec=1min
+Unit=openreply-cron@refresh-tokens.service
+
+[Install]
+WantedBy=timers.target

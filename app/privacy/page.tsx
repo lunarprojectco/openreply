@@ -48,10 +48,11 @@ export default function PrivacyPage() {
       <section>
         <h2 className="text-xl font-bold text-white">Subprocessors</h2>
         <p className="mt-3">
-          The production service may use hosting, database, Redis queue, email,
-          and observability providers such as Vercel, Railway, PostgreSQL,
-          Redis, and Resend. These providers process data only as needed to run
-          the service.
+          This instance is self-hosted. The production service uses PostgreSQL
+          for storage, Redis for the send queue, and an email provider for
+          magic-link sign-in. These process data only as needed to run the
+          service. Instagram data is exchanged directly with Meta&apos;s official
+          API.
         </p>
       </section>
 

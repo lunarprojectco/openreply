@@ -1,0 +1,37 @@
+[Unit]
+Description=OpenReply worker — BullMQ consumer, sends the DMs
+Documentation=https://github.com/lunarprojectco/openreply/blob/main/docs/deploy-lunar.md
+After=network-online.target openreply-web.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=openreply
+Group=openreply
+WorkingDirectory=/opt/openreply
+
+EnvironmentFile=/etc/openreply/openreply.env
+Environment=NODE_ENV=production
+
+ExecStart=/usr/bin/npm run worker
+
+Restart=always
+RestartSec=5s
+
+# The worker is not optional. The web app only enqueues; nothing is sent while
+# this is down. Jobs survive in Redis, so a restart drains the backlog rather
+# than losing it — but the queue also holds the per-account rate limiter state,
+# so never run two of these against one Redis.
+StartLimitIntervalSec=0
+
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=openreply-worker
+
+[Install]
+WantedBy=multi-user.target

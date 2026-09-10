@@ -1,0 +1,15 @@
+[Unit]
+Description=OpenReply — daily follower-count snapshot
+Documentation=https://github.com/lunarprojectco/openreply/blob/main/docs/deploy-lunar.md
+
+[Timer]
+# One row per account per day. Runs after refresh-tokens so a token renewed at
+# 05:00 is already in place; a missed day is a gap in the chart, not an outage.
+OnCalendar=*-*-* 07:00:00 UTC
+Persistent=true
+RandomizedDelaySec=300
+AccuracySec=1min
+Unit=openreply-cron@snapshot-followers.service
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,24 @@
+[Unit]
+Description=OpenReply scheduled job — %i
+Documentation=https://github.com/lunarprojectco/openreply/blob/main/docs/deploy-lunar.md
+After=network-online.target openreply-web.service
+Requires=openreply-web.service
+
+[Service]
+Type=oneshot
+User=openreply
+Group=openreply
+
+EnvironmentFile=/etc/openreply/openreply.env
+
+# %i is the route name: refresh-tokens, attach-next-reel, snapshot-followers.
+ExecStart=/opt/openreply/deploy/bin/openreply-cron-call %i
+
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=openreply-cron-%i

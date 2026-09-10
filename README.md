@@ -67,9 +67,11 @@ Read [docs/setup.md](docs/setup.md) for the complete walkthrough, including a pr
 
 ### Deploy the web app
 
-The button creates your web deployment. You still need to configure the database, Redis, email delivery, and a separate always-on worker.
+This fork deploys to our own infrastructure: nginx in front of the Next.js server, both
+processes under systemd. See [docs/deploy-lunar.md](docs/deploy-lunar.md).
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/diwenne/openreply)
+You need PostgreSQL, Redis, email delivery for magic-link sign-in, a public HTTPS URL, and
+a separate always-on worker. The worker is not optional — it is what actually sends the DMs.
 
 ### Run it locally
 
@@ -102,7 +104,7 @@ If you use Claude Code, Cursor, or a similar tool, an assistant can walk you thr
 - Tailwind CSS for the interface
 - The official Instagram API with Instagram Login
 
-For the complete stack — application libraries, the two runtime processes, and the free services this runs on (Vercel, Neon, Redis Cloud, an Oracle Cloud always-free VM for the worker, Resend, Meta) — see [docs/stack.md](docs/stack.md).
+For the complete stack — application libraries and the two runtime processes — see [docs/stack.md](docs/stack.md). Note that this fork self-hosts; the PaaS options described there are upstream's, not ours.
 
 ## Contributing
 
