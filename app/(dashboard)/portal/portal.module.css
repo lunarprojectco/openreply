@@ -1,0 +1,369 @@
+.portal {
+  --ink: #301e36;
+  --muted: #776d78;
+  color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+  padding-bottom: 60px;
+}
+.portal h1,
+.portal h2,
+.portal h3,
+.portal p {
+  margin: 0;
+}
+.eyebrow {
+  color: #ac5e58;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.19em;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 25px;
+  padding-block: 32px 29px;
+}
+.header h1,
+.portal > h1 {
+  margin-top: 12px;
+  font:
+    400 clamp(34px, 3.9vw, 52px) / 1.05 Georgia,
+    serif;
+  letter-spacing: -0.055em;
+}
+.muted {
+  margin-top: 12px !important;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.primaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  min-width: 146px;
+  margin-top: 20px;
+  padding: 13px 15px;
+  border: 0;
+  border-radius: 4px;
+  background: #ec806d;
+  color: #27152f;
+  font-size: 12px;
+  font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+}
+.primaryButton:hover {
+  background: #f59b89;
+}
+.topline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #ddd6d4;
+  background: #f9f6f2;
+  padding: 12px 17px;
+  color: #594b5b;
+  font-size: 12px;
+}
+.topline a {
+  margin-left: auto;
+  color: #8f504d;
+  font-weight: 700;
+  text-decoration: none;
+}
+.statusDot {
+  width: 7px;
+  height: 7px;
+  flex: none;
+  border-radius: 50%;
+  background: #b45c50;
+}
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 20px;
+  border: 1px solid #ded8d5;
+  background: #fff;
+}
+.metrics > div {
+  min-height: 122px;
+  padding: 20px;
+  border-right: 1px solid #ded8d5;
+}
+.metrics > div:last-child {
+  border-right: 0;
+}
+.metrics span {
+  display: block;
+  color: #a16765;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+.metrics strong {
+  display: block;
+  margin-top: 8px;
+  font:
+    400 38px/1 Georgia,
+    serif;
+}
+.metrics small {
+  display: block;
+  margin-top: 7px;
+  color: #8a8089;
+  font-size: 11px;
+}
+.contentGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(250px, 0.8fr);
+  gap: 20px;
+  margin-top: 20px;
+}
+.setup {
+  border: 1px solid #ded8d5;
+  background: #fff;
+  padding: 27px;
+}
+.sectionHeading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 15px;
+}
+.sectionHeading h2,
+.next h2,
+.activity h2 {
+  margin-top: 9px;
+  font:
+    400 29px/1.1 Georgia,
+    serif;
+  letter-spacing: -0.05em;
+}
+.sectionHeading > span {
+  color: #8f687f;
+  font-size: 11px;
+  white-space: nowrap;
+}
+.taskList {
+  margin-top: 25px;
+}
+.taskList > div {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 18px 0;
+  border-top: 1px solid #e7e1de;
+}
+.taskList > div:last-child {
+  padding-bottom: 2px;
+}
+.taskList > div > span {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 31px;
+  height: 31px;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 800;
+}
+.todo {
+  background: #f4ded7;
+  color: #a75850;
+}
+.done {
+  background: #dceddc;
+  color: #3d7849;
+}
+.taskList > div > div {
+  min-width: 0;
+}
+.taskList h3 {
+  font-size: 14px;
+  font-weight: 750;
+}
+.taskList p {
+  margin-top: 5px;
+  color: #827882;
+  font-size: 11px;
+  line-height: 1.5;
+}
+.taskList a {
+  margin-left: auto;
+  color: #a45e55;
+  font-size: 11px;
+  font-weight: 800;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.next {
+  position: relative;
+  overflow: hidden;
+  min-height: 308px;
+  padding: 27px;
+  background: #302039;
+  color: #fff;
+}
+.next .eyebrow {
+  color: #eea99b;
+}
+.orbit {
+  position: absolute;
+  right: -25px;
+  top: 5px;
+  display: grid;
+  place-items: center;
+  width: 165px;
+  height: 165px;
+  border: 1px solid #876777;
+  border-radius: 50%;
+  color: #f49b88;
+  font-size: 52px;
+}
+.orbit:before {
+  content: "";
+  position: absolute;
+  width: 115px;
+  height: 115px;
+  border: 1px solid #876777;
+  border-radius: 50%;
+}
+.orbit span {
+  position: relative;
+}
+.next h2 {
+  position: relative;
+  max-width: 230px;
+  margin-top: 93px;
+  font-size: 28px;
+}
+.next > p:not(.eyebrow) {
+  position: relative;
+  margin-top: 11px;
+  color: #d4c6d5;
+  font-size: 11px;
+  line-height: 1.6;
+}
+.next > div:last-child {
+  position: relative;
+  display: flex;
+  gap: 18px;
+  margin-top: 20px;
+}
+.next a {
+  color: #ffad9c;
+  font-size: 11px;
+  font-weight: 800;
+  text-decoration: none;
+}
+.activity {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 36px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ded8d5;
+}
+.activity h2 {
+  font-size: 29px;
+}
+.activity p:not(.eyebrow) {
+  margin-top: 8px;
+  color: #827882;
+  font-size: 12px;
+}
+.activity > a {
+  color: #a45e55;
+  font-size: 11px;
+  font-weight: 800;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.recentLogs {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.recentLogs li {
+  display: flex;
+  gap: 20px;
+  padding: 13px 0;
+  border-bottom: 1px solid #e7e1de;
+  font-size: 12px;
+}
+.recentLogs span {
+  flex: 1;
+}
+.recentLogs small {
+  color: #8a8089;
+  text-transform: capitalize;
+}
+.recentLogs time {
+  color: #8a8089;
+}
+@media (max-width: 900px) {
+  .contentGrid {
+    grid-template-columns: 1fr;
+  }
+  .next {
+    min-height: 240px;
+  }
+  .next h2 {
+    margin-top: 55px;
+  }
+}
+@media (max-width: 620px) {
+  .header {
+    display: block;
+    padding-top: 15px;
+  }
+  .header h1 {
+    font-size: 38px;
+  }
+  .header .primaryButton {
+    margin-top: 23px;
+  }
+  .topline {
+    flex-wrap: wrap;
+  }
+  .topline a {
+    width: 100%;
+    margin-left: 16px;
+  }
+  .metrics {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .metrics > div {
+    min-height: 105px;
+  }
+  .metrics > div:nth-child(2) {
+    border-right: 0;
+  }
+  .metrics > div:nth-child(-n + 2) {
+    border-bottom: 1px solid #ded8d5;
+  }
+  .setup {
+    padding: 20px;
+  }
+  .sectionHeading {
+    display: block;
+  }
+  .sectionHeading > span {
+    display: block;
+    margin-top: 10px;
+  }
+  .taskList > div {
+    gap: 10px;
+  }
+  .taskList p {
+    max-width: 200px;
+  }
+  .activity {
+    align-items: start;
+    flex-direction: column;
+  }
+}

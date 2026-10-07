@@ -1,6 +1,12 @@
 import { NextResponse, type NextRequest } from "next/server";
 
-const PROTECTED_PREFIXES = ["/dashboard", "/automations", "/logs", "/settings"];
+const PROTECTED_PREFIXES = [
+  "/portal",
+  "/dashboard",
+  "/automations",
+  "/logs",
+  "/settings",
+];
 
 function hasSessionCookie(request: NextRequest): boolean {
   return (
@@ -14,9 +20,8 @@ function hasSessionCookie(request: NextRequest): boolean {
 export function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   const isProtected = PROTECTED_PREFIXES.some(
-    (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`)
+    (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`),
   );
-  const isLogin = pathname === "/login";
   const isAuthenticated = hasSessionCookie(request);
 
   if (isProtected && !isAuthenticated) {
@@ -25,19 +30,15 @@ export function proxy(request: NextRequest) {
     return NextResponse.redirect(loginUrl);
   }
 
-  if (isLogin && isAuthenticated) {
-    return NextResponse.redirect(new URL("/dashboard", request.url));
-  }
-
   return NextResponse.next();
 }
 
 export const config = {
   matcher: [
+    "/portal/:path*",
     "/dashboard/:path*",
     "/automations/:path*",
     "/logs/:path*",
     "/settings/:path*",
-    "/login",
   ],
 };

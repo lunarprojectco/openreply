@@ -12,6 +12,7 @@ import { zernioLink } from "@/lib/zernio-links";
 import { usePathname } from "next/navigation";
 
 const navItems = [
+  { label: "Workspace", href: "/portal" },
   { label: "Dashboard", href: "/dashboard" },
   { label: "Overview", href: "/overview" },
   { label: "Inbox", href: "/inbox" },
@@ -46,7 +47,7 @@ export default function Sidebar({
 
       <aside
         className={`
-          fixed top-0 left-0 z-50 h-dvh w-64 max-w-[85vw] shrink-0 bg-surface border-r border-border flex flex-col
+          fixed top-0 left-0 z-50 h-dvh w-64 max-w-[85vw] shrink-0 bg-[#2b1934] border-r border-white/10 text-white flex flex-col
           transition-transform duration-200 ease-out
           lg:h-full lg:translate-x-0 lg:static lg:z-auto
           ${isOpen ? "translate-x-0" : "-translate-x-full"}
@@ -55,11 +56,20 @@ export default function Sidebar({
         {/* Same reason as the top bar: the drawer is full height, so the
             wordmark would otherwise land under the status bar. */}
         <div
-          className="px-6 py-5 border-b border-border"
+          className="px-6 py-5 border-b border-white/10"
           style={{ paddingTop: "calc(1.25rem + env(safe-area-inset-top))" }}
         >
-          <Link href="/dashboard" className="text-base font-semibold">
-            OpenReply
+          <Link
+            href="/portal"
+            className="text-lg font-semibold tracking-tight text-white"
+          >
+            <span className="text-[#ff8f7a]" aria-hidden="true">
+              ✳
+            </span>{" "}
+            relay{" "}
+            <span className="text-[9px] tracking-[.18em] text-[#cbbbd2]">
+              BY LUNAR
+            </span>
           </Link>
         </div>
 
@@ -77,8 +87,8 @@ export default function Sidebar({
                   block px-3 py-2.5 rounded text-sm
                   ${
                     isActive
-                      ? "bg-surface-hover text-foreground font-medium"
-                      : "text-muted hover:text-foreground hover:bg-surface-hover"
+                      ? "bg-[#503451] text-white font-medium"
+                      : "text-[#cbbbd2] hover:text-white hover:bg-[#442c4b]"
                   }
                 `}
               >
@@ -88,14 +98,14 @@ export default function Sidebar({
           })}
         </nav>
 
-        <div className="px-5 py-4 border-t border-border">
-          <p className="text-sm text-foreground truncate">{workspaceName}</p>
-          <p className="text-xs text-muted">Self-hosted</p>
+        <div className="px-5 py-4 border-t border-white/10">
+          <p className="text-sm text-white truncate">{workspaceName}</p>
+          <p className="text-xs text-[#bdaec3]">Self-hosted</p>
           <a
             href={zernioLink({ placement: "sidebar" })}
             target="_blank"
             rel="sponsored noopener noreferrer"
-            className="mt-4 flex items-center gap-3 text-xs text-muted hover:text-foreground"
+            className="mt-4 flex items-center gap-3 text-xs text-[#bdaec3] hover:text-white"
           >
             <span>Supported by</span>
             <Image
