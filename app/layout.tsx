@@ -3,9 +3,9 @@ import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "OpenReply - Open source Instagram comment-to-DM automation",
+  title: "Relay by Lunar - Instagram comment-to-DM workspace",
   description:
-    "A free, self-hosted ManyChat alternative. Send an Instagram DM automatically when someone comments a keyword on your post or reel, using the official Meta API.",
+    "Build Instagram comment-to-DM campaigns, review delivery, and manage replies in a self-hosted workspace built on OpenReply.",
   keywords: [
     "instagram automation",
     "comment to DM",
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   manifest: "/manifest.webmanifest",
   appleWebApp: {
     capable: true,
-    title: "OpenReply",
+    title: "Relay by Lunar",
     statusBarStyle: "black-translucent",
   },
   icons: {

@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
-/* ManyChat Alternative — Design System
-   Plain and functional. No gradients, glass, glow, or animation. */
+/* Relay workspace tokens. Public marketing pages use scoped relay-public styles. */
 
 @theme inline {
   --color-background: #ffffff;
@@ -11,8 +10,8 @@
   --color-border: #e4e4e7;
   --color-border-hover: #d4d4d8;
   --color-muted: #71717a;
-  --color-accent: #f97316;
-  --color-accent-hover: #ea580c;
+  --color-accent: #b95f54;
+  --color-accent-hover: #9f4c45;
   --color-success: #16a34a;
   --color-error: #dc2626;
   --color-warning: #d97706;
@@ -90,19 +89,28 @@ select:focus-visible {
 }
 
 @theme inline {
-  --color-zernio-coral: #EB3514;
-  --color-zernio-cream: #F0EFEB;
-  --color-zernio-border: #D9D8D3;
-  --color-zernio-charcoal: #2D2D2D;
+  --color-zernio-coral: #eb3514;
+  --color-zernio-cream: #f0efeb;
+  --color-zernio-border: #d9d8d3;
+  --color-zernio-charcoal: #2d2d2d;
 }
-.zernio-sponsor { background: var(--color-zernio-cream); color: var(--color-zernio-charcoal); border-color: var(--color-zernio-border); }
-.zernio-action { background: var(--color-zernio-coral); color: white; }
+.zernio-sponsor {
+  background: var(--color-zernio-cream);
+  color: var(--color-zernio-charcoal);
+  border-color: var(--color-zernio-border);
+}
+.zernio-action {
+  background: var(--color-zernio-coral);
+  color: white;
+}
 
 @font-face {
-  font-family: 'Zernio Geist';
-  src: url('/fonts/geist-latin.woff2') format('woff2');
+  font-family: "Zernio Geist";
+  src: url("/fonts/geist-latin.woff2") format("woff2");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
-.zernio-sponsor { font-family: 'Zernio Geist', sans-serif; }
+.zernio-sponsor {
+  font-family: "Zernio Geist", sans-serif;
+}
